@@ -1,12 +1,24 @@
 <template>
-  <h1>HOLA</h1>
+  <div class="container">
+    <Header></Header>
+    <Sidebar></Sidebar>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 
 export default {
   name: 'App',
 
+  components:{
+    Header,
+    Sidebar,
+    Footer,
+  }
 }
 </script>
 
