@@ -65,11 +65,9 @@ export default {
   data: function () {
     return {
       infolp: '',
-      errorlp: '',
       infou: '',
-      erroru: '',
       infoq: '',
-      errorq: '',
+      token: '',
     }
   },
 
@@ -80,35 +78,75 @@ export default {
         .then((response) => {
           if (ciudad === 'La Plata') {
             this.infolp = response.data.main
+            this.createClima('La Plata')
           }
           if (ciudad === 'Ushuaia') {
             this.infou = response.data.main
+            this.createClima('Ushuaia')
           }
           if (ciudad === 'La Quiaca') {
             this.infoq = response.data.main
-          }
-        })
-        .catch((error) => {
-          if (ciudad === 'La Plata') {
-            console.log(error)
-            this.errorlp = error;
-          }
-          if (ciudad === 'Ushuaia') {
-            console.log(error)
-            this.infou = error;
-          }
-          if (ciudad === 'La Quiaca') {
-            console.log(error)
-            this.infoq = error;
+            this.createClima('La Quiaca')
           }
         })
     },
+
+    createClima: function (ciudad) {
+      if (ciudad === 'La Plata') {
+        axios.post('http://localhost:1337/climas', {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          },
+          temp: (parseInt(this.infolp.temp) - 273.15).toFixed(2),
+          temp_max: (parseInt(this.infolp.temp_max) - 273.15).toFixed(2),
+          temp_min: (parseInt(this.infolp.temp_min) - 273.15).toFixed(2),
+          sensacion_termica: (parseInt(this.infolp.feels_like) - 273.15).toFixed(2),
+          humedad: parseInt(this.infolp.humidity),
+          ciudad: 'La Plata',
+        })
+      }
+
+      if (ciudad === 'Ushuaia') {
+        axios.post('http://localhost:1337/climas', {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          },
+          temp: (parseInt(this.infou.temp) - 273.15).toFixed(2),
+          temp_max: (parseInt(this.infou.temp_max) - 273.15).toFixed(2),
+          temp_min: (parseInt(this.infou.temp_min) - 273.15).toFixed(2),
+          sensacion_termica: (parseInt(this.infou.feels_like) - 273.15).toFixed(2),
+          humedad: parseInt(this.infou.humidity),
+          ciudad: 'Ushuaia',
+        })
+      }
+
+      if (ciudad === 'La Quiaca') {
+        axios.post('http://localhost:1337/climas', {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          },
+          temp: (parseInt(this.infoq.temp) - 273.15).toFixed(2),
+          temp_max: (parseInt(this.infoq.temp_max) - 273.15).toFixed(2),
+          temp_min: (parseInt(this.infoq.temp_min) - 273.15).toFixed(2),
+          sensacion_termica: (parseInt(this.infoq.feels_like) - 273.15).toFixed(2),
+          humedad: parseInt(this.infoq.humidity),
+          ciudad: 'La Quiaca',
+        })
+      }
+    }
   },
 
   mounted() {
-    this.callToApi('La Plata')
-    this.callToApi('Ushuaia')
-    this.callToApi('La Quiaca')
+    axios.post("http://localhost:1337/auth/local", {
+      identifier: 'florencia.d.fried@gmail.com',
+      password: 'fg*QD-Lg-.!d4*E'
+    }).then(response => {
+      this.token = response.data.jwt;
+
+      this.callToApi('La Plata')
+      this.callToApi('Ushuaia')
+      this.callToApi('La Quiaca')
+    })
   },
 }
 </script>
