@@ -93,52 +93,63 @@ export default {
 
     createClima: function (ciudad) {
       if (ciudad === 'La Plata') {
-        axios.post('http://localhost:1337/climas', {
-          headers: {
-            Authorization: `Bearer ${this.token}`
-          },
+        let data = {
           temp: (parseInt(this.infolp.temp) - 273.15).toFixed(2),
           temp_max: (parseInt(this.infolp.temp_max) - 273.15).toFixed(2),
           temp_min: (parseInt(this.infolp.temp_min) - 273.15).toFixed(2),
           sensacion_termica: (parseInt(this.infolp.feels_like) - 273.15).toFixed(2),
           humedad: parseInt(this.infolp.humidity),
           ciudad: 'La Plata',
+        }
+
+        axios.post('http://localhost:1337/climas', data, {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          },
         })
       }
 
       if (ciudad === 'Ushuaia') {
-        axios.post('http://localhost:1337/climas', {
-          headers: {
-            Authorization: `Bearer ${this.token}`
-          },
+        let data = {
           temp: (parseInt(this.infou.temp) - 273.15).toFixed(2),
           temp_max: (parseInt(this.infou.temp_max) - 273.15).toFixed(2),
           temp_min: (parseInt(this.infou.temp_min) - 273.15).toFixed(2),
           sensacion_termica: (parseInt(this.infou.feels_like) - 273.15).toFixed(2),
           humedad: parseInt(this.infou.humidity),
           ciudad: 'Ushuaia',
+        }
+
+        axios.post('http://localhost:1337/climas', data, {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          },
         })
       }
 
       if (ciudad === 'La Quiaca') {
-        axios.post('http://localhost:1337/climas', {
-          headers: {
-            Authorization: `Bearer ${this.token}`
-          },
+        let data = {
           temp: (parseInt(this.infoq.temp) - 273.15).toFixed(2),
           temp_max: (parseInt(this.infoq.temp_max) - 273.15).toFixed(2),
           temp_min: (parseInt(this.infoq.temp_min) - 273.15).toFixed(2),
           sensacion_termica: (parseInt(this.infoq.feels_like) - 273.15).toFixed(2),
           humedad: parseInt(this.infoq.humidity),
           ciudad: 'La Quiaca',
+        }
+
+        axios.post('http://localhost:1337/climas', data, {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          },
+        }).catch((error) => {
+          console.log(error)
         })
       }
     }
   },
 
-  mounted() {
-    axios.post("http://localhost:1337/auth/local", {
-      identifier: 'florencia.d.fried@gmail.com',
+  async mounted() {
+    await axios.post("http://localhost:1337/auth/local", {
+      identifier: 'api-user@example.com',
       password: 'fg*QD-Lg-.!d4*E'
     }).then(response => {
       this.token = response.data.jwt;

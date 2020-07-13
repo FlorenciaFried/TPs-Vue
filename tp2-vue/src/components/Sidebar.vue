@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <aside class="sidebar">
-      <button class="button" v-on:click="type = 'generar'">
+      <button class="button" v-on:click="type = 'generar', check = true">
         GENERAR INFORMACION
       </button>
       <button class="button" v-on:click="type = 'visualizar'">
@@ -22,23 +22,28 @@
       </div>
 
       <Clima v-if="type === 'generar'"></Clima>
+      
+      <Charts v-if="type === 'visualizar'" :check="check"></Charts>
     </section>
   </div>
 </template>
 
 <script>
 import Clima from './Clima';
+import Charts from './Charts';
 
 export default {
   name: 'Sidebar',
 
   components: {
     Clima,
+    Charts,
   },
 
   data: function () {
     return {
-      type: ''
+      type: '',
+      check: false,
     }
   },
 
