@@ -4,7 +4,7 @@
       <button class="button" v-on:click="type = 'generar', check = true">
         GENERAR INFORMACION
       </button>
-      <button class="button" v-on:click="type = 'visualizar'">
+      <button class="button" v-on:click="type = 'visualizar', cambiarGrafico()">
         VISUALIZAR INFORMACION
       </button>
     </aside>
@@ -23,31 +23,43 @@
 
       <Clima v-if="type === 'generar'"></Clima>
       
-      <Charts v-if="type === 'visualizar'" :check="check"></Charts>
+      <Chart1 v-if="type === 'visualizar' &&  grafico === 1" :check="check"></Chart1>
+
+      <Chart2 v-if="type === 'visualizar' &&  grafico === 2" :check="check"></Chart2>
     </section>
   </div>
 </template>
 
 <script>
 import Clima from './Clima';
-import Charts from './Charts';
+import Chart1 from './Chart1';
+import Chart2 from './Chart2';
 
 export default {
   name: 'Sidebar',
 
   components: {
     Clima,
-    Charts,
+    Chart1,
+    Chart2,
   },
 
   data: function () {
     return {
       type: '',
       check: false,
+      grafico: 2,
     }
   },
 
   methods: {
+    cambiarGrafico: function(){
+      if(this.grafico === 1){
+        this.grafico = 2;
+      }else{
+        this.grafico = 1;
+      }
+    }
   }
 }
 </script>
