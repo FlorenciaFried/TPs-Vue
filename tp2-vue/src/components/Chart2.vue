@@ -49,10 +49,10 @@ export default {
       if (!this.chartsLib) return null
       return this.chartsLib.charts.Bar.convertOptions({
         chart: {
-          title: 'Company Performance',
-          subtitle: 'Sales, Expenses, and Profit: 2014-2017'
+          title: 'Comparacion entre ciudades',
+          subtitle: 'Sensacion termica, Temperatura, y Humedad'
         },
-        bars: 'horizontal', // Required for Material Bar Charts.
+        bars: 'horizontal', 
         hAxis: { format: 'decimal' },
         height: 400,
         colors: ['#1b9e77', '#d95f02', '#7570b3']
