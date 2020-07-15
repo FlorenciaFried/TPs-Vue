@@ -48,7 +48,7 @@ export default {
     return {
       type: '',
       check: false,
-      grafico: 2,
+      grafico: 1,
     }
   },
 

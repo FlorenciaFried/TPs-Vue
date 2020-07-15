@@ -1,0 +1,7 @@
+Clima:
+temp => float
+temp_max => float
+temp_min => float
+sensacion_termica => float
+humedad => int
+ciudad => textfield
