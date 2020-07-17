@@ -12,6 +12,7 @@ export default {
 
 <style scoped>
 .footer {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 10vh;
   bottom: 0 !important;

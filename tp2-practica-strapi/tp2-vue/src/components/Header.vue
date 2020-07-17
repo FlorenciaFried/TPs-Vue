@@ -27,6 +27,8 @@ export default {
   background: white;
   color: rgb(0, 0, 0);
   float: right;
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
 }
 
 .image-container {

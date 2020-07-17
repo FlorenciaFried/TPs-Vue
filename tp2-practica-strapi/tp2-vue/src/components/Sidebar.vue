@@ -79,6 +79,7 @@ export default {
 }
 
 .button {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
   background-color: #c2ae7a;
   color: rgb(119, 100, 100);
   padding: 20px;
@@ -107,6 +108,7 @@ export default {
 }
 
 .presentacion {
+  font-family: Roboto, sans-serif;
   margin-left: 365px;
 }
 
@@ -116,10 +118,12 @@ export default {
 
 .presentacion h1,
 h2 {
+  font-size: 30px;
   color: #c28b7a;
 }
 
 .presentacion ul {
+  color: #222;
   list-style: none;
 }
 
